@@ -49,7 +49,8 @@ Ein Kubernetes-Cluster besteht aus **Control Plane** und **Worker Nodes**.
 "Nodes" = Server (VMs)
 
 Beispiel:
-<img width="1000" height="640" alt="image" src="https://github.com/user-attachments/assets/e26af885-bd3b-466d-aac2-102b64679f61" />
+<img width="290" height="174" alt="image" src="https://github.com/user-attachments/assets/859cd7d7-6a17-4209-ad27-9cbb3c56e4c5" />
+
 
 ---
 
