@@ -1,4 +1,4 @@
-#Cheat-Sheet
+# Cheat-Sheet
 
 Eine Auflistung aller Informationen zusammengefasst:
 
