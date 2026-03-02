@@ -2,10 +2,6 @@
 
 # Cheat-Sheet
 
-Eine Auflistung aller Informationen zusammengefasst:
-
----
-
 ## Kubernetes – Komponenten Überblick
 
 Kubernetes (K8s) besteht im Kern aus einer **Control Plane** (Steuerung) und mehreren **Worker Nodes** (Ausführung). Die Control Plane ist das Gehirn des Clusters und entscheidet, was laufen soll und wo. Die Worker Nodes führen die eigentlichen Container aus.
