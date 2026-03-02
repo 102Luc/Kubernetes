@@ -1,3 +1,5 @@
+[← Zurück zur Übersicht](./README.md)
+
 # Cheat-Sheet
 
 Eine Auflistung aller Informationen zusammengefasst:
