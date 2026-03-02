@@ -49,7 +49,9 @@ Ein Kubernetes-Cluster besteht aus **Control Plane** und **Worker Nodes**.
 "Nodes" = Server (VMs)
 
 Beispiel:
-<img width="290" height="174" alt="image" src="https://github.com/user-attachments/assets/859cd7d7-6a17-4209-ad27-9cbb3c56e4c5" />
+
+<img width="1000" height="640" alt="image" src="https://github.com/user-attachments/assets/263d46f6-4aa1-41f4-8528-a05a8f6e0b59" />
+
 
 
 ---
@@ -126,4 +128,205 @@ Er entscheidet nur, wo sie laufen sollen.
 Der Controller Manager überwacht den gewünschten Zustand.
 
 Beispiel:
+
 Du definierst:
+
+Es laufen nur 2 Pods.
+
+→ Controller erkennt Abweichung  
+→ Startet automatisch neuen Pod
+
+Er enthält mehrere Controller, z. B.:
+- Node Controller
+- Replica Controller
+- Endpoint Controller
+- Namespace Controller
+
+Er sorgt für Self-Healing.
+
+Beispiel:
+
+<img width="1744" height="1042" alt="image" src="https://github.com/user-attachments/assets/1caba13c-943e-4299-85a9-73cd654a00b9" />
+
+
+---
+
+# Worker Node – Komponenten im Detail
+
+Worker Nodes führen die eigentlichen Workloads aus.
+
+---
+
+### kubelet
+
+Der kubelet ist der Agent auf jedem Worker.
+
+Er:
+- Kommuniziert mit dem API Server
+- Startet Container
+- Überwacht Pods
+- Meldet Status zurück
+
+Wenn kubelet nicht läuft:
+Node ist faktisch tot.
+
+---
+
+### Container Runtime (z. B. containerd)
+
+Die Container Runtime startet die Container technisch.
+
+Beispiele:
+- containerd
+- CRI-O
+
+Früher:
+- Docker (nicht mehr Standard)
+
+Runtime ist zuständig für:
+- Container starten
+- Container stoppen
+- Images ziehen
+
+---
+
+### kube-proxy
+
+kube-proxy regelt Netzwerk-Routing auf Node-Ebene.
+
+Er sorgt dafür, dass:
+- Services erreichbar sind
+- Traffic korrekt an Pods weitergeleitet wird
+- Load-Balancing zwischen Pods funktioniert
+
+Er arbeitet meist mit:
+- iptables
+- oder IPVS
+
+---
+
+## 2.3 CNI (Container Network Interface)
+
+CNI ist nicht Teil der Core-Installation, aber zwingend notwendig.
+
+Sie ermöglicht:
+- Pod-zu-Pod Kommunikation
+- Netzwerk-Routing zwischen Nodes
+
+Beispiele:
+- Calico
+- Flannel
+- Cilium
+
+Ohne CNI:
+Pods können nicht miteinander sprechen.
+
+---
+
+## 3. Vorteile von Kubernetes
+
+### Self-Healing
+- Container crashen → Neustart
+- Node fällt aus → Pods werden neu verteilt
+
+### Skalierung
+- Horizontal Scaling möglich
+- Automatisches Scaling (HPA)
+
+### Rolling Updates
+- Updates ohne Downtime
+- Automatisches Rollback
+
+### Deklarativer Ansatz
+Du beschreibst Zustand in YAML.
+Kubernetes sorgt für Umsetzung.
+
+### Infrastruktur-Abstraktion
+Gleiches Deployment:
+- On-Prem
+- Cloud
+- Hybrid
+
+---
+
+## 4. Technische Informationen
+
+### Architektur
+
+Ein Cluster besteht aus:
+
+- Control Plane
+- Worker Nodes
+- Pods
+- Deployments
+- Services
+- Namespaces
+- PersistentVolumes
+
+---
+
+### Wichtige Objekte
+
+#### Pod
+Kleinste deploybare Einheit.
+Enthält 1+ Container.
+
+#### Deployment
+Verwaltet Pods.
+Ermöglicht:
+- Skalierung
+- Updates
+- Rollbacks
+
+#### Service
+Abstraktion über Pods.
+Macht sie erreichbar.
+
+#### Namespace
+Logische Trennung im Cluster.
+
+---
+
+### Netzwerkmodell
+
+- Jeder Pod erhält eine eigene IP.
+- Pods kommunizieren direkt miteinander.
+- Services abstrahieren dynamische Pod-IPs.
+- Kein NAT zwischen Pods.
+
+---
+
+### Storage
+
+Persistente Daten werden über:
+
+- PersistentVolume (PV)
+- PersistentVolumeClaim (PVC)
+
+bereitgestellt.
+
+Ohne PV → Daten gehen beim Pod-Neustart verloren.
+
+---
+
+### Sicherheit
+
+- RBAC
+- Network Policies
+- Secrets
+- Service Accounts
+
+---
+
+## 5. Zusammenfassung
+
+Kubernetes ist:
+
+- Ein Container-Orchestrator
+- API-zentriert
+- Deklarativ
+- Self-Healing
+- Skalierbar
+- Cloud-agnostisch
+
+Es ist komplex, aber extrem mächtig, wenn die Kernkomponenten verstanden sind.
